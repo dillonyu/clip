@@ -53,6 +53,7 @@ def update_board():
 #     while True:
 #         runInParallel(update_board, test)
 
+os.chdir('/Users/dillonyu/Desktop/') # will change to universal Desktop location later
 print('Welcome to Clip! What would you like to do?')
 while True:
     update_board()
