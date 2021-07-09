@@ -1,3 +1,5 @@
+from multiprocessing import Process
+
 import pyperclip
 import os
 
@@ -19,8 +21,38 @@ def update_board():
 
         # print(entries)
 
+# def runInParallel(*fns):
+#   proc = []
+#   for fn in fns:
+#     p = Process(target=fn)
+#     p.start()
+#     proc.append(p)
+#   for p in proc:
+#     p.join()
+
+# def test():
+#         while True:
+#             print('View Clipboard (view)')
+#             response = str(input())
+#             if response == 'view':
+#                 break
+#         print('Viewing Clipboard...')
+
 # Main Program
-os.chdir('/Users/dillonyu/Desktop/') # will change to universal Desktop location later
+# if __name__ == '__main__':
+#     p1 = Process(target=update_board)
+#     p1.start()
+#     p2 = Process(target=test)
+#     p2.start()
+#     p1.join()
+#     p2.join()
+#     os.chdir('/Users/dillonyu/Desktop/') # will change to universal Desktop location later
+#     print('Welcome to Clip! What would you like to do?')
+#     # while True:
+#         # update_board()
+#     while True:
+#         runInParallel(update_board, test)
+
 print('Welcome to Clip! What would you like to do?')
 while True:
     update_board()
