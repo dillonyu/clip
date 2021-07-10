@@ -18,15 +18,6 @@ def update_board():
     root.after(10, update_board)
 
 
-def test():
-    while True:
-        print('View Clipboard (view)')
-        response = input()
-        if response == 'view':
-            break
-    print('Viewing Clipboard...')
-
-
 # Main Program
 if __name__ == '__main__':
     root = tk.Tk()
