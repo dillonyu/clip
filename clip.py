@@ -36,11 +36,11 @@ if __name__ == '__main__':
     for i in range(10):
         button = tk.Button(frame,
                            text="",
-                           anchor='w',
+                           anchor='nw',
                            justify='left',
                            height=3,
                            width=100,
-                           wraplengt=850,
+                           wraplengt=899,
                            command=copy_text)
         button.pack()
         buttons.append(button)
