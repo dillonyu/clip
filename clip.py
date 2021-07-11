@@ -1,5 +1,4 @@
 import pyperclip
-import os
 import tkinter as tk
 
 # entries stores the clipboard contents as strings
@@ -20,16 +19,25 @@ def update_board():
     if entry is not None and not entry.isspace() and entry not in entries:
         entries.append(entry)
         if nextButton >= len(buttons):
-            nextButton = 0
+            shift_text_up()
+            nextButton -= 1
         buttons[nextButton].config(text=entry)
         nextButton += 1
     root.after(10, update_board)
 
 
+# Copies the input text
 def copy_text(text):
     if text.isspace():
         return
     pyperclip.copy(text)
+
+
+# Shifts all clipboard contents up when not enough space is available for a new entry
+def shift_text_up():
+    for a in range(1, len(buttons)):
+        next_text = buttons[a].cget('text')
+        buttons[a-1].config(text=next_text)
 
 
 # Main Program
