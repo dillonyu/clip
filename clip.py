@@ -19,20 +19,21 @@ def update_board():
     entry = pyperclip.paste()
     if entry is not None and not entry.isspace() and entry not in entries:
         entries.append(entry)
-        if nextButton > len(buttons):
+        if nextButton >= len(buttons):
             nextButton = 0
         buttons[nextButton].config(text=entry)
         nextButton += 1
     root.after(10, update_board)
 
 
-def copy_text():
-    print('Text copied!')
+def copy_text(text):
+    if text.isspace():
+        return
+    pyperclip.copy(text)
 
 
 # Main Program
 if __name__ == '__main__':
-    # os.chdir('/Users/dillonyu/Desktop/')  # will change to universal Desktop location later
     for i in range(10):
         button = tk.Button(frame,
                            text="",
@@ -40,8 +41,9 @@ if __name__ == '__main__':
                            justify='left',
                            height=3,
                            width=100,
-                           wraplengt=899,
-                           command=copy_text)
+                           wraplength=899)
+        # command=lambda: copy_text('Hi!'))
+        button.config(command=lambda b=button: copy_text(b['text']))
         button.pack()
         buttons.append(button)
     update_board()
