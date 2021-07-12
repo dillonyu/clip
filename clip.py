@@ -8,8 +8,9 @@ buttons = []
 # nextButton stores the index of the next button to store the latest entry
 nextButton = 0
 root = tk.Tk()
+root.geometry("700x525")
 frame = tk.Frame(root)
-frame.pack()
+# frame.pack()
 
 
 # Updates the clipboard with new copied text
@@ -37,22 +38,32 @@ def copy_text(text):
 def shift_text_up():
     for a in range(1, len(buttons)):
         next_text = buttons[a].cget('text')
-        buttons[a-1].config(text=next_text)
+        buttons[a - 1].config(text=next_text)
+
+
+# Opens a new window to display the full text on a clipboard entry
+def expand_text():
+    pass
 
 
 # Main Program
-if __name__ == '__main__':
-    for i in range(10):
-        button = tk.Button(frame,
-                           text="",
-                           anchor='nw',
-                           justify='left',
-                           height=3,
-                           width=100,
-                           wraplength=899)
-        # command=lambda: copy_text('Hi!'))
-        button.config(command=lambda b=button: copy_text(b['text']))
-        button.pack()
-        buttons.append(button)
-    update_board()
-    root.mainloop()
+for i in range(10):
+    button = tk.Button(text="",
+                       anchor='nw',
+                       justify='left',
+                       height=3,
+                       width=57,
+                       wraplength=500)
+    # command=lambda: copy_text('Hi!'))
+    button.config(command=lambda b=button: copy_text(b['text']))
+    button.grid(row=i, column=0)
+    # button.pack()
+    buttons.append(button)
+    expand_button = tk.Button(justify='right', height=3, width=10, text="Expand", fg="blue")
+    expand_button.grid(row=i, column=1)
+    trash_button = tk.Button(justify='right', height=3, width=10, text="Trash", fg="red")
+    trash_button.grid(row=i, column=2)
+    # expand_button.pack()
+
+update_board()
+root.mainloop()
