@@ -10,7 +10,6 @@ nextButton = 0
 root = tk.Tk()
 root.geometry("700x525")
 frame = tk.Frame(root)
-# frame.pack()
 
 
 # Updates the clipboard with new copied text
@@ -54,16 +53,13 @@ for i in range(10):
                        height=3,
                        width=57,
                        wraplength=500)
-    # command=lambda: copy_text('Hi!'))
     button.config(command=lambda b=button: copy_text(b['text']))
     button.grid(row=i, column=0)
-    # button.pack()
     buttons.append(button)
     expand_button = tk.Button(justify='right', height=3, width=10, text="Expand", fg="blue")
     expand_button.grid(row=i, column=1)
     trash_button = tk.Button(justify='right', height=3, width=10, text="Trash", fg="red")
     trash_button.grid(row=i, column=2)
-    # expand_button.pack()
 
 update_board()
 root.mainloop()
