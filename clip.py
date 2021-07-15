@@ -20,10 +20,7 @@ def update_board():
     entry = pyperclip.paste()
     if entry is not None and not entry.isspace() and entry != '' and entry not in entries:
         entries.append(entry)
-        if len(entry) > 214:
-            add_entry(entry[:215] + '...')
-        else:
-            add_entry(entry)
+        add_entry(entry)
     root.after(10, update_board)
 
 
@@ -56,11 +53,6 @@ def add_entry(new_text):
         shift_entries_up(1)
         next_button -= 1
     entry_buttons[next_button].config(text=new_text)
-    if entry_buttons[next_button].cget('text').count('\n') > 2:
-        print('here!')
-        new_entry = entry_buttons[next_button].cget('text').partition('\n')[2] + '\n...'
-        entry_buttons[next_button].config(text=new_entry)
-        # add_entry(new_entry)
     next_button += 1
 
 # Deletes an entry based on the input index
