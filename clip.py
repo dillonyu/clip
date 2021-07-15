@@ -3,26 +3,28 @@ import tkinter as tk
 
 # entries stores the clipboard contents as strings
 entries = []
-# buttons stores the clipboard contents as button objects
-buttons = []
-# nextButton stores the index of the next button to store the latest entry
-nextButton = 0
+# entry_buttons stores the clipboard contents as button objects
+entry_buttons = []
+# delButtons stores the delete buttons with their corresponding entry button
+del_buttons = {}
+# next_button stores the index of the next button to store the latest entry
+next_button = 0
 root = tk.Tk()
-root.geometry("700x525")
+root.geometry("660x525")
 frame = tk.Frame(root)
 
 
 # Updates the clipboard with new copied text
 def update_board():
-    global nextButton
+    global next_button
     entry = pyperclip.paste()
     if entry is not None and not entry.isspace() and entry not in entries:
         entries.append(entry)
-        if nextButton >= len(buttons):
+        if next_button >= len(entry_buttons):
             shift_text_up()
-            nextButton -= 1
-        buttons[nextButton].config(text=entry)
-        nextButton += 1
+            next_button -= 1
+        entry_buttons[next_button].config(text=entry)
+        next_button += 1
     root.after(10, update_board)
 
 
@@ -35,9 +37,9 @@ def copy_text(text):
 
 # Shifts all clipboard contents up when not enough space is available for a new entry
 def shift_text_up():
-    for a in range(1, len(buttons)):
-        next_text = buttons[a].cget('text')
-        buttons[a - 1].config(text=next_text)
+    for a in range(1, len(entry_buttons)):
+        next_text = entry_buttons[a].cget('text')
+        entry_buttons[a - 1].config(text=next_text)
 
 
 # Opens a new window to display the full text on a clipboard entry
@@ -55,11 +57,21 @@ for i in range(10):
                        wraplength=500)
     button.config(command=lambda b=button: copy_text(b['text']))
     button.grid(row=i, column=0)
-    buttons.append(button)
-    expand_button = tk.Button(justify='right', height=3, width=10, text="Expand", fg="blue")
+    entry_buttons.append(button)
+
+    expand_button = tk.Button(justify='right', 
+                        height=3, 
+                        width=10, 
+                        text="Expand", 
+                        fg="blue")
     expand_button.grid(row=i, column=1)
-    trash_button = tk.Button(justify='right', height=3, width=10, text="Trash", fg="red")
-    trash_button.grid(row=i, column=2)
+
+    del_button = tk.Button(justify='right', 
+                        height=3, 
+                        width=5, 
+                        text="X", 
+                        fg="red")
+    del_button.grid(row=i, column=2)
 
 update_board()
 root.mainloop()
