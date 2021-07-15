@@ -53,11 +53,9 @@ def expand_text():
 # Deletes an entry based on the input index
 def del_entry(i):
     global next_button
+    # used to change nothing if the user tries to delete an empty entry
     if entry_buttons[i].cget('text').isspace() or entry_buttons[i].cget('text') == '':
-        print('Empty!')
         return
-    del entries[i]
-    print(entries)
     shift_text_up(i+1)
     next_button -= 1
 
@@ -90,6 +88,5 @@ for i in range(10):
     del_buttons.append(del_button)
     del_button.config(command=lambda d=del_button: del_entry(del_buttons.index(d)))
 
-print(entries)
 update_board()
 root.mainloop()
