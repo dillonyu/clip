@@ -1,102 +1,59 @@
+from multiprocessing import Process
+
 import pyperclip
-import tkinter as tk
+import os
 
-# entries stores the clipboard contents as strings
+# entries stores the clipboard contents
 entries = []
-# entry_buttons stores the clipboard contents as button objects
-entry_buttons = []
-# delButtons stores the delete buttons 
-del_buttons = []
-# next_button stores the index of the next button to store the latest entry
-next_button = 0
-root = tk.Tk()
-root.geometry("660x525")
-frame = tk.Frame(root)
 
 
-# Updates the clipboard with any new copied text
+# Updates the clipboard with new copied text
 def update_board():
-    global next_button
     entry = pyperclip.paste()
-    if entry is not None and not entry.isspace() and entry != '' and entry not in entries:
+    if entry != None and entry not in entries:
         entries.append(entry)
-        add_entry(entry)
-    root.after(10, update_board)
+        # board is the file object storing the clipboard
+        board = open("clip.txt", "a+") # by default, the entries are stored in a file called "clip.txt"
+        board.write('\n' + entry)
+        # board.seek(0)
+        # print(board.read())
+        board.close()
 
+        # print(entries)
 
-# Copies the input text
-def copy_text(text):
-    if text.isspace():
-        return
-    pyperclip.copy(text)
+# def runInParallel(*fns):
+#   proc = []
+#   for fn in fns:
+#     p = Process(target=fn)
+#     p.start()
+#     proc.append(p)
+#   for p in proc:
+#     p.join()
 
-
-# Shifts all clipboard contents up when not enough space is available for a new entry
-def shift_entries_up(i):
-    if i == len(entry_buttons):
-        entry_buttons[i - 1].config(text='')
-    for a in range(i, len(entry_buttons)):
-        next_text = entry_buttons[a].cget('text')
-        entry_buttons[a - 1].config(text=next_text)
-        if a == len(entry_buttons) - 1:
-            entry_buttons[a].config(text='')
-
-
-# Opens a new window to display the full text on a clipboard entry
-def expand_entry(entry):
-    expand_window = tk.Toplevel(root)
-    tk.Label(expand_window, text=entry).pack()
-
-
-# Adds the input text as an entry to the clipboard
-def add_entry(new_text):
-    global next_button
-    if next_button >= len(entry_buttons):
-        shift_entries_up(1)
-        next_button -= 1
-    entry_buttons[next_button].config(text=new_text)
-    next_button += 1
-
-
-# Deletes an entry based on the input index
-def del_entry(i):
-    global next_button
-    # used to change nothing if the user tries to delete an empty entry
-    if entry_buttons[i].cget('text').isspace() or entry_buttons[i].cget('text') == '':
-        return
-    shift_entries_up(i + 1)
-    next_button -= 1
-    # del entries[i]
-
+# def test():
+#         while True:
+#             print('View Clipboard (view)')
+#             response = str(input())
+#             if response == 'view':
+#                 break
+#         print('Viewing Clipboard...')
 
 # Main Program
-for i in range(10):
-    button = tk.Button(text="",
-                       anchor='nw',
-                       justify='left',
-                       height=3,
-                       width=57,
-                       wraplength=500)
-    button.config(command=lambda b=button: copy_text(b['text']))
-    button.grid(row=i, column=0)
-    entry_buttons.append(button)
+# if __name__ == '__main__':
+#     p1 = Process(target=update_board)
+#     p1.start()
+#     p2 = Process(target=test)
+#     p2.start()
+#     p1.join()
+#     p2.join()
+#     os.chdir('/Users/dillonyu/Desktop/') # will change to universal Desktop location later
+#     print('Welcome to Clip! What would you like to do?')
+#     # while True:
+#         # update_board()
+#     while True:
+#         runInParallel(update_board, test)
 
-    expand_button = tk.Button(justify='right',
-                              height=3,
-                              width=10,
-                              text="Expand",
-                              fg="blue")
-    expand_button.config(command=lambda b=button: expand_entry(b['text']))
-    expand_button.grid(row=i, column=1)
-
-    del_button = tk.Button(justify='right',
-                           height=3,
-                           width=5,
-                           text="X",
-                           fg="red")
-    del_button.grid(row=i, column=2)
-    del_buttons.append(del_button)
-    del_button.config(command=lambda d=del_button: del_entry(del_buttons.index(d)))
-
-update_board()
-root.mainloop()
+os.chdir('/Users/dillonyu/Desktop/') # will change to universal Desktop location later
+print('Welcome to Clip! What would you like to do?')
+while True:
+    update_board()
