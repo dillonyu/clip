@@ -33,13 +33,12 @@ def copy_text(text):
 
 # Shifts all clipboard contents up when not enough space is available for a new entry
 def shift_entries_up(i):
+    # if deleting the last entry
     if i == len(entry_buttons):
         entry_buttons[i - 1].config(text='')
     for a in range(i, len(entry_buttons)):
         next_text = entry_buttons[a].cget('text')
         entry_buttons[a - 1].config(text=next_text)
-        if a == len(entry_buttons) - 1:
-            entry_buttons[a].config(text='')
 
 
 # Opens a new window to display the full text on a clipboard entry
@@ -66,6 +65,7 @@ def del_entry(i):
         return
     shift_entries_up(i + 1)
     next_button -= 1
+    print(entries[i])
 
 
 # Main Program
