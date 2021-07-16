@@ -12,6 +12,7 @@ next_button = 0
 root = tk.Tk()
 root.geometry("660x525")
 frame = tk.Frame(root)
+full = False
 
 
 # Updates the clipboard with any new copied text
@@ -36,6 +37,8 @@ def shift_entries_up(i):
     # if deleting the last entry
     if i == len(entry_buttons):
         entry_buttons[i - 1].config(text='')
+    if full:
+        del entries[0]
     for a in range(i, len(entry_buttons)):
         next_text = entry_buttons[a].cget('text')
         entry_buttons[a - 1].config(text=next_text)
@@ -52,22 +55,25 @@ def expand_entry(entry):
 # Adds the input text as an entry to the clipboard
 def add_entry(new_text):
     global next_button
+    global full
     if next_button >= len(entry_buttons):
+        full = True
         shift_entries_up(1)
         next_button -= 1
     entry_buttons[next_button].config(text=new_text)
     next_button += 1
-    print(entries)
 
 
 # Deletes an entry based on the input index
 def del_entry(i):
     global next_button
+    global full
     # used to change nothing if the user tries to delete an empty entry
     del entries[i]
     pyperclip.copy('')
     if entry_buttons[i].cget('text').isspace() or entry_buttons[i].cget('text') == '':
         return
+    full = False
     shift_entries_up(i + 1)
     next_button -= 1
 
