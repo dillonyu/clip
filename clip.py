@@ -39,6 +39,8 @@ def shift_entries_up(i):
     for a in range(i, len(entry_buttons)):
         next_text = entry_buttons[a].cget('text')
         entry_buttons[a - 1].config(text=next_text)
+        if a == len(entry_buttons) - 1:
+            entry_buttons[a].config(text='')
 
 
 # Opens a new window to display the full text on a clipboard entry
@@ -55,17 +57,19 @@ def add_entry(new_text):
         next_button -= 1
     entry_buttons[next_button].config(text=new_text)
     next_button += 1
+    print(entries)
 
 
 # Deletes an entry based on the input index
 def del_entry(i):
     global next_button
     # used to change nothing if the user tries to delete an empty entry
+    del entries[i]
+    pyperclip.copy('')
     if entry_buttons[i].cget('text').isspace() or entry_buttons[i].cget('text') == '':
         return
     shift_entries_up(i + 1)
     next_button -= 1
-    print(entries[i])
 
 
 # Main Program
