@@ -23,7 +23,6 @@ def update_board():
         add_entry(entry)
     root.after(10, update_board)
 
-
 # Copies the input text
 def copy_text(text):
     if text.isspace():
@@ -64,8 +63,6 @@ def del_entry(i):
         return
     shift_entries_up(i+1)
     next_button -= 1
-    # del entries[i]
-
 
 # Main Program
 for i in range(10):
