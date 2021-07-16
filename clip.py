@@ -43,8 +43,9 @@ def shift_entries_up(i):
 
 
 # Opens a new window to display the full text on a clipboard entry
-def expand_text():
-    pass
+def expand_entry(entry):
+    expandWindow = tk.Toplevel(root)
+    tk.Label(expandWindow, text=entry).pack()
 
 # Adds the input text as an entry to the clipboard
 def add_entry(new_text):
@@ -63,6 +64,7 @@ def del_entry(i):
         return
     shift_entries_up(i+1)
     next_button -= 1
+    # del entries[i]
 
 
 # Main Program
@@ -82,6 +84,7 @@ for i in range(10):
                               width=10, 
                               text="Expand", 
                               fg="blue")
+    expand_button.config(command=lambda b=button: expand_entry(b['text']))
     expand_button.grid(row=i, column=1)
 
     del_button = tk.Button(justify='right', 
