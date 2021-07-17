@@ -6,8 +6,10 @@ from tkinter import messagebox as mb
 entries = []
 # entry_buttons stores the clipboard contents as button objects
 entry_buttons = []
-# delButtons stores the delete buttons 
+# del_buttons stores the delete buttons
 del_buttons = []
+# expand_buttons stores the expand buttons
+expand_buttons = []
 # next_button stores the index of the next button to store the latest entry
 next_button = 0
 root = tk.Tk()
@@ -61,7 +63,9 @@ def add_entry(new_text):
         full = True
         shift_entries_up(1)
         next_button -= 1
-    entry_buttons[next_button].config(text=new_text)
+    entry_buttons[next_button].config(text=new_text, state='normal')
+    del_buttons[next_button].config(state='normal')
+    expand_buttons[next_button].config(state='normal')
     next_button += 1
 
 
@@ -69,14 +73,14 @@ def add_entry(new_text):
 def del_entry(i):
     global next_button
     global full
-    # used to change nothing if the user tries to delete an empty entry
     del entries[i]
     pyperclip.copy('')
-    if entry_buttons[i].cget('text').isspace() or entry_buttons[i].cget('text') == '':
-        return
     full = False
     shift_entries_up(i + 1)
     next_button -= 1
+    del_buttons[next_button].config(state='disabled')
+    expand_buttons[next_button].config(state='disabled')
+    entry_buttons[next_button].config(state='disabled')
 
 
 # Opens the clear all warning window
@@ -84,8 +88,10 @@ def open_clr_warning():
     global next_button
     ans = mb.askquestion('Clear Clipboard', 'Are you sure you want to clear the clipboard?')
     if ans == 'yes':
-        for entry in entry_buttons:
-            entry.config(text='')
+        for i in range(len(entry_buttons)):
+            entry_buttons[i].config(text='', state='disabled')
+            expand_buttons[i].config(state='disabled')
+            del_buttons[i].config(state='disabled')
         next_button = 0
         entries.clear()
         pyperclip.copy('')
@@ -98,7 +104,8 @@ for i in range(10):
                        justify='left',
                        height=3,
                        width=57,
-                       wraplength=500)
+                       wraplength=500,
+                       state='disabled')
     button.config(command=lambda b=button: copy_text(b['text']))
     button.grid(row=i, column=0)
     entry_buttons.append(button)
@@ -107,15 +114,18 @@ for i in range(10):
                               height=3,
                               width=10,
                               text="Expand",
-                              fg="blue")
+                              fg="blue",
+                              state='disabled')
     expand_button.config(command=lambda b=button: expand_entry(b['text']))
+    expand_buttons.append(expand_button)
     expand_button.grid(row=i, column=1)
 
     del_button = tk.Button(justify='right',
                            height=3,
                            width=5,
                            text="X",
-                           fg="red")
+                           fg="red",
+                           state='disabled')
     del_button.grid(row=i, column=2)
     del_buttons.append(del_button)
     del_button.config(command=lambda d=del_button: del_entry(del_buttons.index(d)))
@@ -127,5 +137,6 @@ clr_all_button = tk.Button(text="Clear All",
 clr_all_button.grid(row=10, column=0)
 clr_all_button.config(command=open_clr_warning)
 
+pyperclip.copy('')
 update_board()
 root.mainloop()
