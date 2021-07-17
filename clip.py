@@ -1,5 +1,6 @@
 import pyperclip
 import tkinter as tk
+from tkinter import messagebox as mb
 
 # entries stores the clipboard contents as strings
 entries = []
@@ -10,7 +11,7 @@ del_buttons = []
 # next_button stores the index of the next button to store the latest entry
 next_button = 0
 root = tk.Tk()
-root.geometry("660x525")
+root.geometry("660x557")
 frame = tk.Frame(root)
 full = False
 
@@ -78,6 +79,18 @@ def del_entry(i):
     next_button -= 1
 
 
+# Opens the clear all warning window
+def open_clr_warning():
+    global next_button
+    ans = mb.askquestion('Clear Clipboard', 'Are you sure you want to clear the clipboard?')
+    if ans == 'yes':
+        for entry in entry_buttons:
+            entry.config(text='')
+        next_button = 0
+        entries.clear()
+        pyperclip.copy('')
+
+
 # Main Program
 for i in range(10):
     button = tk.Button(text="",
@@ -106,6 +119,13 @@ for i in range(10):
     del_button.grid(row=i, column=2)
     del_buttons.append(del_button)
     del_button.config(command=lambda d=del_button: del_entry(del_buttons.index(d)))
+
+clr_all_button = tk.Button(text="Clear All",
+                           justify='left',
+                           height=2,
+                           width=57, )
+clr_all_button.grid(row=10, column=0)
+clr_all_button.config(command=open_clr_warning)
 
 update_board()
 root.mainloop()
