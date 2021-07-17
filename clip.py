@@ -13,7 +13,7 @@ expand_buttons = []
 # next_button stores the index of the next button to store the latest entry
 next_button = 0
 root = tk.Tk()
-root.geometry("660x557")
+root.geometry("616x557")
 frame = tk.Frame(root)
 full = False
 
@@ -51,8 +51,9 @@ def shift_entries_up(i):
 
 # Opens a new window to display the full text on a clipboard entry
 def expand_entry(entry):
-    expand_window = tk.Toplevel(root)
-    tk.Label(expand_window, text=entry).pack()
+    ans = mb.askokcancel('Full Text', 'Full Text:\n\n' + entry + '\n\nCopy Text?')
+    if ans:
+        pyperclip.copy(entry)
 
 
 # Adds the input text as an entry to the clipboard
@@ -112,8 +113,8 @@ for i in range(10):
 
     expand_button = tk.Button(justify='right',
                               height=3,
-                              width=10,
-                              text="Expand",
+                              width=5,
+                              text="...",
                               fg="blue",
                               state='disabled')
     expand_button.config(command=lambda b=button: expand_entry(b['text']))
