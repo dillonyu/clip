@@ -59,8 +59,8 @@ def add_entry(new_text):
         shift_entries_up(1)
         next_space -= 1
     entry_buttons[next_space].config(text=new_text, state='normal')
-    del_buttons[next_space].config(state='normal')
-    expand_buttons[next_space].config(state='normal')
+    del_buttons[next_space].config(text='X', fg='red', state='normal')
+    expand_buttons[next_space].config(text='...', fg='blue', state='normal')
     next_space += 1
 
 
@@ -73,9 +73,9 @@ def del_entry(d):
     full = False
     shift_entries_up(d + 1)
     next_space -= 1
-    del_buttons[next_space].config(state='disabled')
-    expand_buttons[next_space].config(state='disabled')
     entry_buttons[next_space].config(state='disabled')
+    del_buttons[next_space].config(text='', state='disabled')
+    expand_buttons[next_space].config(text='', state='disabled')
     if not entries:
         clr_all_button.config(state='disabled')
 
@@ -87,8 +87,8 @@ def clear_all():
     if ans == 'yes':
         for b in range(len(entry_buttons)):
             entry_buttons[b].config(text='', state='disabled')
-            expand_buttons[b].config(state='disabled')
-            del_buttons[b].config(state='disabled')
+            expand_buttons[b].config(text='', state='disabled')
+            del_buttons[b].config(text='', state='disabled')
         next_space = 0
         entries.clear()
         pyperclip.copy('')
@@ -104,7 +104,6 @@ def open_help():
 for i in range(10):
     button = tk.Button(text="",
                        anchor='nw',
-                       justify='left',
                        height=3,
                        width=57,
                        wraplength=500,
@@ -115,9 +114,6 @@ for i in range(10):
 
     expand_button = tk.Button(height=3,
                               width=5,
-                              justify='right',
-                              text="...",
-                              fg="blue",
                               state='disabled')
     expand_button.config(command=lambda b=button: expand_entry(b['text']))
     expand_buttons.append(expand_button)
@@ -125,25 +121,21 @@ for i in range(10):
 
     del_button = tk.Button(height=3,
                            width=5,
-                           justify='right',
-                           text="X",
-                           fg="red",
                            state='disabled')
     del_button.grid(row=i, column=2)
     del_buttons.append(del_button)
     del_button.config(command=lambda d=del_button: del_entry(del_buttons.index(d)))
 
 clr_all_button = tk.Button(text="Clear All",
-                           justify='left',
                            height=2,
                            width=57,
+                           fg='red',
                            state='disabled')
 clr_all_button.grid(row=10, column=0)
 clr_all_button.config(command=clear_all)
 
 help_button = tk.Button(text="Help",
                         height=2,
-                        justify='right',
                         width=10,
                         command=open_help)
 help_button.grid(row=10, column=1, columnspan=2, sticky=tk.W + tk.E)
