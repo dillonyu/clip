@@ -51,6 +51,8 @@ def expand_entry(entry):
 def add_entry(new_text):
     global next_space
     global full
+    if entries:
+        clr_all_button.config(state='normal')
     # adjusts accordingly if the clipboard is full
     if next_space >= len(entry_buttons):
         full = True
@@ -74,10 +76,12 @@ def del_entry(d):
     del_buttons[next_space].config(state='disabled')
     expand_buttons[next_space].config(state='disabled')
     entry_buttons[next_space].config(state='disabled')
+    if not entries:
+        clr_all_button.config(state='disabled')
 
 
-# Opens the clear all warning window
-def open_clr_warning():
+# Clears all entries from the clipboard
+def clear_all():
     global next_space
     ans = mb.askquestion('Clear Clipboard', 'Are you sure you want to clear the clipboard?')
     if ans == 'yes':
@@ -88,6 +92,7 @@ def open_clr_warning():
         next_space = 0
         entries.clear()
         pyperclip.copy('')
+        clr_all_button.config(state='disabled')
 
 
 # Opens a link to help on using the program
@@ -131,9 +136,10 @@ for i in range(10):
 clr_all_button = tk.Button(text="Clear All",
                            justify='left',
                            height=2,
-                           width=57)
+                           width=57,
+                           state='disabled')
 clr_all_button.grid(row=10, column=0)
-clr_all_button.config(command=open_clr_warning)
+clr_all_button.config(command=clear_all)
 
 help_button = tk.Button(text="Help",
                         height=2,
