@@ -1,6 +1,7 @@
 import pyperclip
 import tkinter as tk
 from tkinter import messagebox as mb
+import webbrowser
 
 # entries stores the clipboard contents as strings
 entries = []
@@ -89,6 +90,11 @@ def open_clr_warning():
         pyperclip.copy('')
 
 
+# Opens a link to help on using the program
+def open_help():
+    webbrowser.open('https://github.com/dillonyu/clip/blob/main/README.md#help')
+
+
 # Main Program
 for i in range(10):
     button = tk.Button(text="",
@@ -102,9 +108,9 @@ for i in range(10):
     button.grid(row=i, column=0)
     entry_buttons.append(button)
 
-    expand_button = tk.Button(justify='right',
-                              height=3,
+    expand_button = tk.Button(height=3,
                               width=5,
+                              justify='right',
                               text="...",
                               fg="blue",
                               state='disabled')
@@ -112,9 +118,9 @@ for i in range(10):
     expand_buttons.append(expand_button)
     expand_button.grid(row=i, column=1)
 
-    del_button = tk.Button(justify='right',
-                           height=3,
+    del_button = tk.Button(height=3,
                            width=5,
+                           justify='right',
                            text="X",
                            fg="red",
                            state='disabled')
@@ -128,6 +134,13 @@ clr_all_button = tk.Button(text="Clear All",
                            width=57)
 clr_all_button.grid(row=10, column=0)
 clr_all_button.config(command=open_clr_warning)
+
+help_button = tk.Button(text="Help",
+                        height=2,
+                        justify='right',
+                        width=10,
+                        command=open_help)
+help_button.grid(row=10, column=1, columnspan=2, sticky=tk.W + tk.E)
 
 pyperclip.copy('')
 update_board()
