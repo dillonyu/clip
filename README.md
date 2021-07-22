@@ -13,4 +13,3 @@ Clip is a free and open source clipboard manager tool written in Python.
 
 ## Help/Tutorial
 
-

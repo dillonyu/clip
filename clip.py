@@ -24,10 +24,10 @@ root.title('Clip')
 # Updates the clipboard with any new copied text
 def update_board():
     entry = pyperclip.paste()
-    if entry != '' and entry not in entries:
+    if entry != '' and not entry.isspace() and entry not in entries:
         entries.append(entry)
         add_entry(entry)
-    root.after(10, update_board)
+    root.after(100, update_board)
 
 
 # Shifts all clipboard content up from index k, deleting the entry at index k - 1
