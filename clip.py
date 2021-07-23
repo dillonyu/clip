@@ -97,7 +97,7 @@ def clear_all():
 
 # Opens a link to help on using the program
 def open_help():
-    webbrowser.open('https://github.com/dillonyu/clip/blob/main/README.md#help')
+    webbrowser.open('https://github.com/dillonyu/clip#usage')
 
 
 # Main Program
