@@ -21,7 +21,11 @@ Coming soon!
 
 ## Usage
 
-Coming soon!
+<img style="float: right;" src="https://github.com/dillonyu/clip/blob/main/images/usage-entry.png">
+
+Test...
+
+![alt text](https://github.com/dillonyu/clip/blob/main/images/usage-entry.png)
 
 ## License
 
