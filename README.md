@@ -1,6 +1,6 @@
 # Clip
 
-Clip is a free and open source clipboard manager tool written in Python.
+Clip is a clipboard manager tool written in Python.
 
 ## Features
 
@@ -13,8 +13,16 @@ Clip is a free and open source clipboard manager tool written in Python.
 
 ## Demo
 
+Coming soon!
+
 ## Installation
+
+Coming soon!
 
 ## Usage
 
+Coming soon!
+
 ## License
+
+Coming soon!
