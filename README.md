@@ -48,5 +48,4 @@ You can quickly open this guide by clicking the "Help" button on the bottom righ
 ![help button](https://github.com/dillonyu/clip/blob/main/images/usage-help.png)
 
 ## License
-
-Coming soon!
+[GNU GPLv3](https://github.com/dillonyu/clip/blob/main/LICENSE)
