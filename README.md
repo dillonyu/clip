@@ -13,7 +13,7 @@ Clip is a clipboard manager tool written in Python.
 
 ## Demo
 
-Coming soon!
+![demo](https://github.com/dillonyu/clip/blob/main/clip-demo.gif)
 
 ## Installation
 
@@ -37,7 +37,7 @@ If a text you copy is too long, you can use the _expand_ button to view the full
 ![expand button](https://github.com/dillonyu/clip/blob/main/images/usage-expand.png)  
 
 Clicking the expand button opens a dialog box with the full text, as well as two options. Clicking "OK" will copy the text you expanded.  
-(put dialog box image here)
+![expand window](https://github.com/dillonyu/clip/blob/main/images/usage-expand-window.png)
 
 **4. Clearing All Entries**  
 If you would like to clear all saved entries at once, click the "Clear All" button at the bottom.  
