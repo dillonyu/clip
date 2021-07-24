@@ -2,6 +2,10 @@
 
 Clip is a clipboard manager tool written in Python.
 
+## Demo
+
+![demo](https://github.com/dillonyu/clip/blob/main/clip-demo.gif)
+
 ## Features
 
 - Saves the 10 most recent clipboard entries.
@@ -10,10 +14,6 @@ Clip is a clipboard manager tool written in Python.
 - For long text, use the expand button to see the full text.
 - Ability to clear all entries saved.
 - Need help? The help button brings you to a tutorial.
-
-## Demo
-
-![demo](https://github.com/dillonyu/clip/blob/main/clip-demo.gif)
 
 ## Installation
 
