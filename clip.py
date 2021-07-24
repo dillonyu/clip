@@ -30,21 +30,21 @@ def update_board():
     root.after(100, update_board)
 
 
-# Shifts all clipboard content up from index k, deleting the entry at index k - 1
-def shift_entries_up(k):
+# Shifts all clipboard content up from index top, deleting the entry at index top - 1
+def shift_entries_up(top):
     if full:
         del entries[0]
-    for a in range(k, len(entry_buttons)):
+    for a in range(top, len(entry_buttons)):
         next_text = entry_buttons[a].cget('text')
         entry_buttons[a - 1].config(text=next_text)
     entry_buttons[len(entry_buttons) - 1].config(text='')
 
 
 # Opens a new window to display the full text on a clipboard entry
-def expand_entry(entry):
-    ans = mb.askokcancel('Full Text', 'Full Text:\n\n \" ' + entry + " \"" + '\n\nCopy Text?')
+def expand_entry(expand_index):
+    ans = mb.askokcancel('Full Text', 'Full Text:\n\n \" ' + entries[expand_index] + " \"" + '\n\nCopy Text?')
     if ans:
-        pyperclip.copy(entry)
+        pyperclip.copy(entries[expand_index])
 
 
 # Adds the input text as an entry to the clipboard
@@ -58,20 +58,24 @@ def add_entry(new_text):
         full = True
         shift_entries_up(1)
         next_space -= 1
-    entry_buttons[next_space].config(text=new_text, state='normal')
+    # truncates long text
+    if len(new_text) > 200:
+        entry_buttons[next_space].config(text=new_text[:200] + '...', state='normal')
+    else:
+        entry_buttons[next_space].config(text=new_text, state='normal')
     del_buttons[next_space].config(text='X', fg='red', state='normal')
     expand_buttons[next_space].config(text='...', fg='blue', state='normal')
     next_space += 1
 
 
 # Deletes an entry based on the input index
-def del_entry(d):
+def del_entry(del_index):
     global next_space
     global full
-    del entries[d]
+    del entries[del_index]
     pyperclip.copy('')
     full = False
-    shift_entries_up(d + 1)
+    shift_entries_up(del_index + 1)
     next_space -= 1
     entry_buttons[next_space].config(state='disabled')
     del_buttons[next_space].config(text='', state='disabled')
@@ -103,7 +107,7 @@ def open_help():
 # Main Program
 for i in range(10):
     button = tk.Button(text="",
-                       anchor='nw',
+                       anchor='n',
                        height=3,
                        width=57,
                        wraplength=500,
@@ -115,7 +119,7 @@ for i in range(10):
     expand_button = tk.Button(height=3,
                               width=5,
                               state='disabled')
-    expand_button.config(command=lambda b=button: expand_entry(b['text']))
+    expand_button.config(command=lambda b=expand_button: expand_entry(expand_buttons.index(b)))
     expand_buttons.append(expand_button)
     expand_button.grid(row=i, column=1)
 
