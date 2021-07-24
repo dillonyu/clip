@@ -29,7 +29,7 @@ Clip will automatically save any text you copy and display it as an entry in one
 ![entry button](https://github.com/dillonyu/clip/blob/main/images/usage-entry.png)
 
 **2. Deleting Entries**  
-Delete any entry by clicking on the _delete button_.
+Delete any entry by clicking on the _delete button_.  
 ![delete button](https://github.com/dillonyu/clip/blob/main/images/usage-delete.png)
 
 **3. Expanding Entries**  
