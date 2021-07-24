@@ -112,7 +112,7 @@ for i in range(10):
                        width=57,
                        wraplength=500,
                        state='disabled')
-    button.config(command=lambda b=button: pyperclip.copy(b['text']))
+    button.config(command=lambda b=button: pyperclip.copy(entries[entry_buttons.index(b)]))
     button.grid(row=i, column=0)
     entry_buttons.append(button)
 
