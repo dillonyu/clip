@@ -20,6 +20,7 @@ Coming soon!
 Coming soon!
 
 ## Usage
+
 **Full Program**  
 ![Full Program](https://github.com/dillonyu/clip/blob/main/images/usage-full.png)
 
@@ -45,7 +46,6 @@ If you would like to clear all saved entries at once, click the "Clear All" butt
 **5. Quickly Open this Guide**  
 You can quickly open this guide by clicking the "Help" button on the bottom right.  
 ![help button](https://github.com/dillonyu/clip/blob/main/images/usage-help.png)
-
 
 ## License
 
