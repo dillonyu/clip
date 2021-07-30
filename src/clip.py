@@ -24,7 +24,7 @@ root.title('Clip')
 # Updates the clipboard with any new copied text
 def update_board():
     entry = pyperclip.paste()
-    if entry != '' and not entry.isspace() and entry not in entries:
+    if type(entry) is not None and entry != '' and not entry.isspace() and entry not in entries:
         entries.append(entry)
         add_entry(entry)
     root.after(100, update_board)
