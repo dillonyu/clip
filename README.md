@@ -1,8 +1,6 @@
 # clip
 
-Clip is a clipboard manager tool for macOS and Windows.
-
-## Demo
+*Clip* is a clipboard manager tool for macOS and Windows.
 
 ![demo](https://github.com/dillonyu/clip/blob/main/clip-demo.gif)
 
@@ -15,9 +13,23 @@ Clip is a clipboard manager tool for macOS and Windows.
 - Ability to clear all entries saved.
 - Need help? The help button brings you to a tutorial.
 
-## Download
+## Usage
+Below are the steps to use *Clip*:  
 
-Coming soon!
+**1. Install Python**  
+*Skip this step if you already have Python installed on your computer.*  
+
+You will first need to install Python on your computer. It is recommended to download the latest Python version. You can install Python for both macOS and
+Windows [here](https://www.python.org/downloads/).
+
+**2. Download Clip**  
+Next, you will need to download *Clip* [here](https://www.google.com).
+
+**3. Run Clip**
+You are now ready to run clip. 
+1. Open the **IDLE** program (comes with Python download).
+2. In **IDLE**, lick **File > Open**, and open the **clip.py** file from the *Clip* directory you downloaded.
+3. To run *Clip*, click **Run > Run Module** in **IDLE**.
 
 ## Guide
 
