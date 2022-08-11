@@ -28,7 +28,7 @@ Next, you will need to download *Clip* [here](https://github.com/dillonyu/clip/r
 **3. Run Clip**
 You are now ready to run clip. 
 1. Open the **IDLE** program (comes with Python download).
-2. In **IDLE**, lick **File > Open**, and open the **clip.py** file from the *Clip* directory you downloaded.
+2. In **IDLE**, click **File > Open**, and open the **clip.py** file from the *Clip* directory you downloaded.
 3. To run *Clip*, click **Run > Run Module** in **IDLE**.
 
 ## Guide
