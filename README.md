@@ -1,4 +1,4 @@
-# Clip
+# clip
 
 Clip is a clipboard manager tool for macOS and Windows.
 
