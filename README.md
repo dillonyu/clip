@@ -1,6 +1,6 @@
 # Clip
 
-Clip is a clipboard manager tool written in Python.
+Clip is a clipboard manager tool for macOS and Windows.
 
 ## Demo
 
