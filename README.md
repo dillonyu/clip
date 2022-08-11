@@ -23,7 +23,7 @@ You will first need to install Python on your computer. It is recommended to dow
 Windows [here](https://www.python.org/downloads/).
 
 **2. Download Clip**  
-Next, you will need to download *Clip* [here](https://www.google.com).
+Next, you will need to download *Clip* [here](https://github.com/dillonyu/clip/raw/main/clip.zip).
 
 **3. Run Clip**
 You are now ready to run clip. 
