@@ -1,7 +1,5 @@
 # Clip
 
-Hi!
-
 Clip is a clipboard manager tool written in Python.
 
 ## Demo
