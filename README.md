@@ -11,7 +11,6 @@
 - Allows deleting of specific entries.
 - For long text, use the expand button to see the full text.
 - Ability to clear all entries saved.
-- Need help? The help button brings you to a tutorial.
 
 ## Usage
 Below are the steps to use *Clip*:  
