@@ -33,7 +33,6 @@ You are now ready to run clip.
 
 ## Guide
 
-**Full Program**  
 ![Full Program](https://github.com/dillonyu/clip/blob/main/images/usage-full.png)
 
 **1. Saving and Copying Entries**  
