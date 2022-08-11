@@ -15,11 +15,11 @@ Clip is a clipboard manager tool written in Python.
 - Ability to clear all entries saved.
 - Need help? The help button brings you to a tutorial.
 
-## Installation
+## Download
 
 Coming soon!
 
-## Usage
+## Guide
 
 **Full Program**  
 ![Full Program](https://github.com/dillonyu/clip/blob/main/images/usage-full.png)
